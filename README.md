@@ -1,11 +1,11 @@
-# SOLID #4 – Interface Segregation Principle (ISP)
+# SOLID #4 – Interface Segregation Principle (ISP) - Java
 
 > **Princípio da Segregação de Interfaces**  
 > *"Os clientes não devem ser forçados a depender de interfaces que não utilizam."* — Robert C. Martin
 
 ## 🎯 Objetivo
 
-Este repositório demonstra o **Interface Segregation Principle (ISP)** através de um sistema de pedidos implementado em **duas versões**:
+Este repositório demonstra o **Interface Segregation Principle (ISP)** através de um sistema de pedidos implementado em **duas versões** usando **Java 17 + Maven**:
 
 | Versão | Descrição |
 |--------|-----------|
@@ -30,40 +30,30 @@ O ISP nasceu de um problema real na Xerox: uma classe de impressora usada por v�
 
 ```
 solid-04-isp/
-├── before/                    # Versão que VIOLA o ISP
-│   ├── src/
-│   │   ├── PedidoRepository.ts       # Interface gorda (5 métodos)
-│   │   ├── MySqlPedidoRepository.ts  # Implementação completa
-│   │   ├── PedidoRepositoryReplica.ts # Réplica - VIOLA LSP (lança exceções)
-│   │   ├── FinalizarPedido.ts        # Cliente: só usa salvar()
-│   │   ├── CancelarPedido.ts         # Cliente: usa buscar + excluir
-│   │   ├── ConsultarPedido.ts        # Cliente: só usa buscar + listar
-│   │   └── RelatorioFinanceiro.ts    # Cliente: só usa listar (mas tem acesso a tudo!)
-│   └── tests/
-│       └── isp-violations.test.ts    # Demonstra os problemas
-│
-├── after/                     # Versão que RESPEITA o ISP
-│   ├── src/
-│   │   ├── domain/
-│   │   │   └── Pedido.ts             # Entidades: Pedido, Cliente, Item
-│   │   ├── application/
-│   │   │   ├── ports.ts              # Role interfaces (SalvaPedido, BuscaPedido, etc.)
-│   │   │   ├── FinalizarPedido.ts    # Depende APENAS de SalvaPedido
-│   │   │   ├── CancelarPedido.ts     # Depende de BuscaPedido + ExcluiPedido
-│   │   │   ├── ConsultarPedido.ts    # Depende de ConsultaPedidos (Busca + Lista)
-│   │   │   └── RelatorioFinanceiro.ts # Depende APENAS de ListaPedidos
-│   │   └── infra/
-│   │       ├── MySqlPedidoRepository.ts      # Implementa TODOS os papéis
-│   │       ├── PedidoRepositoryReplica.ts    # Implementa APENAS leitura
-│   │       └── InMemoryPedidoRepository.ts   # Para testes
-│   └── tests/unit/
-│       └── isp.test.ts               # Testes com fakes mínimos
-│
-├── docs/
-│   └── isp.md                        # Este documento
-│
+├── pom.xml                    # Maven parent POM
 ├── README.md
-└── CHANGELOG.md
+├── CHANGELOG.md
+├── before/                    # Versão que VIOLA o ISP
+│   ├── pom.xml
+│   └── src/
+│       ├── main/java/com/solid/isp/before/
+│       │   ├── domain/           # Cliente, Item, Pedido
+│       │   ├── repository/       # PedidoRepository (gorda), MySqlPedidoRepository, PedidoRepositoryReplica
+│       │   └── usecase/          # FinalizarPedido, CancelarPedido, ConsultarPedido, RelatorioFinanceiro
+│       └── test/java/com/solid/isp/before/
+│           └── ISPViolationsTest.java  # Demonstra os 5 problemas
+│
+└── after/                     # Versão que RESPEITA o ISP
+    ├── pom.xml
+    └── src/
+        ├── main/java/com/solid/isp/after/
+        │   ├── domain/                    # Cliente, Item, Pedido
+        │   ├── application/
+        │   │   ├── port/                  # Role interfaces (SalvaPedido, BuscaPedido, etc.)
+        │   │   └── usecase/               # Casos de uso com dependências mínimas
+        │   └── infrastructure/            # MySqlPedidoRepository, PedidoRepositoryReplica, InMemoryPedidoRepository
+        └── test/java/com/solid/isp/after/
+            └── ISPRespectedTest.java      # Testes com fakes mínimos
 ```
 
 ---
@@ -71,13 +61,13 @@ solid-04-isp/
 ## 🔴 Versão BEFORE – Problemas Demonstrados
 
 ### Interface Gorda
-```typescript
-interface PedidoRepository {
-  salvar(pedido: Pedido): void;
-  buscarPorId(id: string): Pedido | null;
-  listar(): Pedido[];
-  excluir(id: string): void;
-  exportarCsv(): string;
+```java
+public interface PedidoRepository {
+    void salvar(Pedido pedido);
+    Pedido buscarPorId(String id);
+    List<Pedido> listar();
+    void excluir(String id);
+    String exportarCsv();
 }
 ```
 
@@ -86,7 +76,7 @@ interface PedidoRepository {
 | Problema | Descrição |
 |----------|-----------|
 | **Fake gigante** | Testar `FinalizarPedido` exige implementar 5 métodos (só usa 1) |
-| **Violação LSP** | `PedidoRepositoryReplica` lança `Error` em `salvar()` e `excluir()` |
+| **Violação LSP** | `PedidoRepositoryReplica` lança `UnsupportedOperationException` em `salvar()` e `excluir()` |
 | **Acesso indevido** | `RelatorioFinanceiro` pode chamar `excluir()` acidentalmente |
 | **Acoplamento** | Mudança em `exportarCsv()` afeta TODOS os 6 clientes/implementações |
 | **Nomes genéricos** | `PedidoRepository` não revela o papel de cada cliente |
@@ -96,44 +86,45 @@ interface PedidoRepository {
 ## 🟢 Versão AFTER – Solução ISP
 
 ### Role Interfaces (Portas)
-```typescript
-interface SalvaPedido     { salvar(pedido: Pedido): void; }
-interface BuscaPedido     { buscarPorId(id: string): Pedido | null; }
-interface ListaPedidos    { listar(): Pedido[]; }
-interface ExcluiPedido    { excluir(id: string): void; }
-interface ExportaPedidos  { exportarCsv(): string; }
+```java
+public interface SalvaPedido     { void salvar(Pedido pedido); }
+public interface BuscaPedido     { Pedido buscarPorId(String id); }
+public interface ListaPedidos    { List<Pedido> listar(); }
+public interface ExcluiPedido    { void excluir(String id); }
+public interface ExportaPedidos  { String exportarCsv(); }
 
 // Composição quando métodos são sempre usados juntos
-interface ConsultaPedidos extends BuscaPedido, ListaPedidos {}
-interface GerenciaPedidos extends SalvaPedido, BuscaPedido, ExcluiPedido {}
+public interface ConsultaPedidos extends BuscaPedido, ListaPedidos {}
+public interface GerenciaPedidos extends SalvaPedido, BuscaPedido, ExcluiPedido {}
 ```
 
 ### Clientes Dependem Apenas do que Usam
-```typescript
-class FinalizarPedido {
-  constructor(private readonly repo: SalvaPedido) {}  // Só salvar
+```java
+public class FinalizarPedido {
+    private final SalvaPedido repo;  // Só salvar
+    public FinalizarPedido(SalvaPedido repo) { this.repo = repo; }
 }
 
-class CancelarPedido {
-  constructor(
-    private readonly busca: BuscaPedido,
-    private readonly exclui: ExcluiPedido
-  ) {}  // Buscar + Excluir
+public class CancelarPedido {
+    private final BuscaPedido busca;
+    private final ExcluiPedido exclui;  // Buscar + Excluir
+    public CancelarPedido(BuscaPedido busca, ExcluiPedido exclui) { ... }
 }
 
-class RelatorioFinanceiro {
-  constructor(private readonly pedidos: ListaPedidos) {}  // Só leitura!
+public class RelatorioFinanceiro {
+    private final ListaPedidos pedidos;  // Só leitura!
+    public RelatorioFinanceiro(ListaPedidos pedidos) { this.pedidos = pedidos; }
 }
 ```
 
 ### Implementações
-```typescript
+```java
 // Completa: implementa todos os papéis
-class MySqlPedidoRepository implements 
-  SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos { }
+public class MySqlPedidoRepository implements 
+    SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos { }
 
 // Réplica: APENAS leitura - compilação FALHA se tentar escrever
-class PedidoRepositoryReplica implements BuscaPedido, ListaPedidos { }
+public class PedidoRepositoryReplica implements BuscaPedido, ListaPedidos { }
 ```
 
 ---
@@ -141,22 +132,24 @@ class PedidoRepositoryReplica implements BuscaPedido, ListaPedidos { }
 ## 🧪 Como Executar
 
 ### Pré-requisitos
-- Node.js 18+
-- TypeScript 5+
-
-### Instalação
-```bash
-npm install
-```
+- Java 17+
+- Maven 3.8+
 
 ### Executar Testes - Versão AFTER (ISP Respeitado)
 ```bash
-npx ts-node after/tests/unit/isp.test.ts
+cd after
+mvn test
 ```
 
 ### Executar Testes - Versão BEFORE (Problemas)
 ```bash
-npx ts-node before/tests/isp-violations.test.ts
+cd before
+mvn test
+```
+
+### Executar Todos os Testes
+```bash
+mvn test
 ```
 
 ---
@@ -166,10 +159,10 @@ npx ts-node before/tests/isp-violations.test.ts
 | Métrica | Before (Viola ISP) | After (Respeita ISP) |
 |---------|-------------------|---------------------|
 | Métodos da interface usados por `FinalizarPedido` | 1 de 5 | 1 de 1 |
-| Implementações com `throw NotImplemented` | 1+ | 0 |
+| Implementações com `throw UnsupportedOperationException` | 1+ | 0 |
 | Métodos no fake de teste de `FinalizarPedido` | 5 | 1 |
 | Clientes afetados ao mudar `exportarCsv` | **Todos (6)** | Apenas quem usa `ExportaPedidos` |
-| `RelatorioFinanceiro` tem acesso a `excluir()` | ✅ Sim (perigoso) | ❌ Não (seguro) |
+| `RelatorioFinanceiro` tem acesso a `excluir()` | ✅ Sim (perigoso) | ❌ Não (erro de compilação) |
 | Réplica de leitura compila com escrita | ✅ Sim (errado) | ❌ Erro de compilação |
 
 ---
@@ -200,7 +193,7 @@ npx ts-node before/tests/isp-violations.test.ts
 ## ✅ Checklist de Revisão
 
 - [ ] Cada cliente depende apenas dos métodos que realmente usa?
-- [ ] Nenhuma implementação lança `NotImplementedException`, tem método vazio ou retorna valor falso?
+- [ ] Nenhuma implementação lança `UnsupportedOperationException`, tem método vazio ou retorna valor falso?
 - [ ] As interfaces foram definidas a partir das necessidades dos clientes?
 - [ ] Os nomes das interfaces revelam o papel (`SalvaPedido` vs `IRepository`)?
 - [ ] Os fakes de teste são mínimos (1 método por papel)?
