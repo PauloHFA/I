@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.solid.isp.before.ISPViolationsTest" time="0.074" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.solid.isp.before.ISPViolationsTest" time="0.083" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\PAULO\AppData\Local\Temp\surefire17811760747502690411\surefirebooter-20261020161354626_3.jar C:\Users\PAULO\AppData\Local\Temp\surefire17811760747502690411 2026-10-20T16-13-54_515-jvmRun1 surefire-20261020161354626_1tmp surefire_0-20261020161354626_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\PAULO\AppData\Local\Temp\surefire13243823495767504015\surefirebooter-20261020185656274_3.jar C:\Users\PAULO\AppData\Local\Temp\surefire13243823495767504015 2026-10-20T18-56-56_155-jvmRun1 surefire-20261020185656274_1tmp surefire_0-20261020185656274_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Projetos\I\before\target\test-classes;C:\Projetos\I\before\target\classes;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\PAULO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\PAULO\AppData\Local\Temp\surefire17811760747502690411\surefirebooter-20261020161354626_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\PAULO\AppData\Local\Temp\surefire13243823495767504015\surefirebooter-20261020185656274_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+12-LTS-250"/>
@@ -58,7 +58,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="problema4_MudancaNaInterfaceGordaAfetaTodos" classname="com.solid.isp.before.ISPViolationsTest" time="0.025">
+  <testcase name="problema4_MudancaNaInterfaceGordaAfetaTodos" classname="com.solid.isp.before.ISPViolationsTest" time="0.026">
     <system-out><![CDATA[
 === PROBLEMA 4: Acoplamento Desnecessário ===
 ✗ Se exportarCsv() mudar de assinatura:
@@ -71,14 +71,14 @@
 ✗ Acoplamento desnecessário entre clientes não relacionados
 ]]></system-out>
   </testcase>
-  <testcase name="problema1_FakeGiganteParaTestarUmMetodo" classname="com.solid.isp.before.ISPViolationsTest" time="0.011">
+  <testcase name="problema1_FakeGiganteParaTestarUmMetodo" classname="com.solid.isp.before.ISPViolationsTest" time="0.012">
     <system-out><![CDATA[
 === PROBLEMA 1: Fake Gigante ===
 ✗ Fake tem 5 métodos, mas FinalizarPedido só usa 1 (salvar)
 ✗ Métodos irrelevantes: buscarPorId, listar, excluir, exportarCsv
 ]]></system-out>
   </testcase>
-  <testcase name="problema2_ReplicaLancaExcecao_ViolacaoLSP" classname="com.solid.isp.before.ISPViolationsTest" time="0.011">
+  <testcase name="problema2_ReplicaLancaExcecao_ViolacaoLSP" classname="com.solid.isp.before.ISPViolationsTest" time="0.014">
     <system-out><![CDATA[
 === PROBLEMA 2: Violação LSP na Réplica ===
 [Réplica-Before] Sincronizada com 1 pedidos
@@ -94,7 +94,7 @@
 ✗ Dificulta entender as dependências reais
 ]]></system-out>
   </testcase>
-  <testcase name="problema3_RelatorioTemAcessoAMetodosDeEscrita" classname="com.solid.isp.before.ISPViolationsTest" time="0.006">
+  <testcase name="problema3_RelatorioTemAcessoAMetodosDeEscrita" classname="com.solid.isp.before.ISPViolationsTest" time="0.009">
     <system-out><![CDATA[
 === PROBLEMA 3: Acesso Indevido a Métodos de Escrita ===
 [MySQL-Before] Pedido 4 salvo
