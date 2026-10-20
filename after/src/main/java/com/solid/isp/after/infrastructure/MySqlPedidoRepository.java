@@ -61,4 +61,9 @@ public class MySqlPedidoRepository implements SalvaPedido, BuscaPedido, ListaPed
         System.out.println("[MySQL] Exportando " + lista.size() + " pedidos para CSV");
         return sb.toString();
     }
+
+    @Override
+    public String exportarCabecalhoCsv() {
+        return "ID,Cliente,Data,Status,Total";
+    }
 }

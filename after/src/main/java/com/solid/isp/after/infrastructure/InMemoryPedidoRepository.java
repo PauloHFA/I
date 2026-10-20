@@ -54,6 +54,11 @@ public class InMemoryPedidoRepository implements SalvaPedido, BuscaPedido, Lista
         return sb.toString();
     }
 
+    @Override
+    public String exportarCabecalhoCsv() {
+        return "ID,Cliente,Data,Status,Total";
+    }
+
     // Utilitários para testes
     public void limpar() {
         pedidos.clear();

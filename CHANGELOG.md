@@ -5,6 +5,18 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Adicionado
+- Módulo `acceptance-test` com comparações comportamentais e verificações arquiteturais para `before` e `after`.
+- Documentação dedicada do ISP em `docs/isp.md`, vinculada pelo README.
+- Novo método `exportarCabecalhoCsv()` no papel `ExportaPedidos`; somente os exportadores implementam a operação.
+
+### Corrigido
+- Módulos Maven agora herdam a configuração do parent POM da raiz, incluindo JDK 21 e versões centralizadas das dependências.
+- Fakes e testes de aceitação agora verificam comportamento e papéis reais, sem asserções tautológicas.
+- Atualizada a importação Maven automática do VS Code e ignorados diretórios `target/` gerados.
+
 ## [1.0.0] - 2026-10-20
 
 ### Adicionado
@@ -28,7 +40,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
     - `MySqlPedidoRepository` - implementa todos os papéis
     - `PedidoRepositoryReplica` - implementa APENAS leitura (compilação falha se tentar escrita)
     - `InMemoryPedidoRepository` - para testes
-  - Testes com fakes mínimos (1 método por papel)
+  - Testes com fakes mínimos definidos por papel
 
 - **Estrutura Maven Multi-module**
   - Parent POM na raiz
