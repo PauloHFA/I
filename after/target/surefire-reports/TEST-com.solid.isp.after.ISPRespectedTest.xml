@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.solid.isp.after.ISPRespectedTest" time="0.088" tests="7" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Projetos\I\after\target\test-classes;C:\Projetos\I\after\target\classes;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\PAULO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Sao_Paulo"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="BR"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\PAULO\AppData\Local\Temp\surefire1519776126580909337\surefirebooter-20261020161355672_11.jar C:\Users\PAULO\AppData\Local\Temp\surefire1519776126580909337 2026-10-20T16-13-54_515-jvmRun1 surefire-20261020161355672_9tmp surefire_1-20261020161355672_10tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Projetos\I\after\target\test-classes;C:\Projetos\I\after\target\classes;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\PAULO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\PAULO\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\PAULO"/>
+    <property name="user.language" value="pt"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-07-15"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Projetos\I\after"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\PAULO\AppData\Local\Temp\surefire1519776126580909337\surefirebooter-20261020161355672_11.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.8+12-LTS-250"/>
+    <property name="user.name" value="PAULO"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\PAULO\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\PAULO\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.8"/>
+    <property name="user.dir" value="C:\Projetos\I\after"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\GitHub CLI\;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;c:\Users\PAULO\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\PAULO\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\PAULO\AppData\Local\hermes\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\PAULO\.local\bin;C:\Users\PAULO\AppData\Local\Microsoft\WindowsApps;C:\Users\PAULO\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\PAULO\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\PAULO\AppData\Local\Programs\Ollama;C:\Program Files\JetBrains\IntelliJ IDEA 2026.2.1\bin;C:\maven\bin;C:\apache-maven\bin;C:\Users\PAULO\AppData\Local\Microsoft\WinGet\Packages\BurntSushi.ripgrep.MSVC_Microsoft.Winget.Source_8wekyb3d8bbwe\ripgrep-15.2.0-x86_64-pc-windows-msvc;C:\Users\PAULO\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.1-full_build\bin;C:\Users\PAULO\AppData\Local\Programs\Cua\cua-driver\bin;c:\Users\PAULO\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;c:\Users\PAULO\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\scripts\noConfigScripts;C:\ngrok;C:\Users\PAULO\AppData\Local\Python\bin;C:\Users\PAULO\AppData\Roaming\npm;c:\Users\PAULO\AppData\Local\Programs\Microsoft VS Code\6d62b1d5da\resources\app\node_modules.asar.unpacked\@vscode\ripgrep-universal\bin\win32-x64;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21.0.8+12-LTS-250"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="teste7_Evolucao_MudancaEmExportaPedidosNaoAfetaOutros" classname="com.solid.isp.after.ISPRespectedTest" time="0.027">
+    <system-out><![CDATA[
+=== TESTE 7: Evolução - Mudança em ExportaPedidos não afeta outros clientes ===
+✓ FinalizarPedido depende só de SalvaPedido
+✓ CancelarPedido depende só de BuscaPedido + ExcluiPedido
+✓ RelatorioFinanceiro depende só de ListaPedidos
+✓ Apenas quem usa ExportaPedidos seria afetado
+]]></system-out>
+  </testcase>
+  <testcase name="teste3_ConsultarPedido_ComConsultaPedidos" classname="com.solid.isp.after.ISPRespectedTest" time="0.015">
+    <system-out><![CDATA[
+=== TESTE 3: ConsultarPedido - Fake ConsultaPedidos (2 métodos relacionados) ===
+✓ Busca por ID: 3
+✓ Lista todos: 2 pedidos
+]]></system-out>
+  </testcase>
+  <testcase name="teste6_ImplementacaoCompleta_ImplementaTodosOsPapeis" classname="com.solid.isp.after.ISPRespectedTest" time="0.009">
+    <system-out><![CDATA[
+=== TESTE 6: MySqlPedidoRepository - Implementa TODOS os papéis ===
+[MySQL] Pedido 9 salvo
+[MySQL] Busca por ID: 9 - encontrado
+[MySQL] Listando 1 pedidos
+[MySQL] Listando 1 pedidos
+[MySQL] Exportando 1 pedidos para CSV
+[MySQL] Busca por ID: 9 - encontrado
+✓ Salvo: 9
+[MySQL] Listando 1 pedidos
+✓ Lista: 1 pedidos
+✓ CSV exportado com sucesso
+]]></system-out>
+  </testcase>
+  <testcase name="teste5_ReplicaDeLeitura_ImplementaApenasLeitura" classname="com.solid.isp.after.ISPRespectedTest" time="0.003">
+    <system-out><![CDATA[
+=== TESTE 5: PedidoRepositoryReplica - Implementa APENAS BuscaPedido + ListaPedidos ===
+[Réplica] Sincronizada com 2 pedidos
+[Réplica] Listando 2 pedidos
+[Réplica] Busca por ID: 7 - encontrado
+[Réplica] Listando 2 pedidos
+✓ Réplica sincronizada: 2 pedidos
+[Réplica] Busca por ID: 7 - encontrado
+✓ Busca: 7
+✓ Compilação impede uso de métodos de escrita na réplica
+]]></system-out>
+  </testcase>
+  <testcase name="teste2_CancelarPedido_ComFakesCompostos" classname="com.solid.isp.after.ISPRespectedTest" time="0.004">
+    <system-out><![CDATA[
+=== TESTE 2: CancelarPedido - Fakes BuscaPedido + ExcluiPedido ===
+✓ CancelarPedido executado com 2 fakes de 1 método cada
+]]></system-out>
+  </testcase>
+  <testcase name="teste1_FinalizarPedido_ComFakeMinimo" classname="com.solid.isp.after.ISPRespectedTest" time="0.002">
+    <system-out><![CDATA[
+=== TESTE 1: FinalizarPedido - Fake com APENAS SalvaPedido ===
+✓ FinalizarPedido executado com fake de 1 método
+]]></system-out>
+  </testcase>
+  <testcase name="teste4_RelatorioFinanceiro_ComApenasListaPedidos_Seguranca" classname="com.solid.isp.after.ISPRespectedTest" time="0.005">
+    <system-out><![CDATA[
+=== TESTE 4: RelatorioFinanceiro - Fake APENAS ListaPedidos (segurança) ===
+✓ Relatório: 2 pedidos, R$ 500
+✓ RelatorioFinanceiro NÃO tem acesso a excluir(), salvar(), exportarCsv()
+]]></system-out>
+  </testcase>
+</testsuite>

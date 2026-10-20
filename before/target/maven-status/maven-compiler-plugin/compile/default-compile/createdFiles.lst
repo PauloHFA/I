@@ -1,0 +1,12 @@
+com\solid\isp\before\repository\PedidoRepository.class
+com\solid\isp\before\domain\Pedido$Status.class
+com\solid\isp\before\usecase\RelatorioFinanceiro.class
+com\solid\isp\before\usecase\ConsultarPedido.class
+com\solid\isp\before\usecase\RelatorioFinanceiro$Relatorio.class
+com\solid\isp\before\repository\MySqlPedidoRepository.class
+com\solid\isp\before\usecase\CancelarPedido.class
+com\solid\isp\before\domain\Item.class
+com\solid\isp\before\repository\PedidoRepositoryReplica.class
+com\solid\isp\before\usecase\FinalizarPedido.class
+com\solid\isp\before\domain\Cliente.class
+com\solid\isp\before\domain\Pedido.class
