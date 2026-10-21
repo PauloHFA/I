@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -210,8 +210,10 @@ class PedidoAcceptanceTest {
     }
 
     private static List<Class<?>> dependencyTypes(Class<?> useCase) {
-        return Arrays.stream(useCase.getDeclaredFields())
-                .map(Field::getType)
-                .toList();
+        List<Class<?>> types = new ArrayList<>();
+        for (Field field : useCase.getDeclaredFields()) {
+            types.add(field.getType());
+        }
+        return List.copyOf(types);
     }
 }
