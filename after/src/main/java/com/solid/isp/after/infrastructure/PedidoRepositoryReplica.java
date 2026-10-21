@@ -1,7 +1,6 @@
 package com.solid.isp.after.infrastructure;
 
-import com.solid.isp.after.application.port.BuscaPedido;
-import com.solid.isp.after.application.port.ListaPedidos;
+import com.solid.isp.after.application.port.ConsultaPedidos;
 import com.solid.isp.after.domain.Pedido;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +12,7 @@ import java.util.Map;
  * NÃO implementa SalvaPedido, ExcluiPedido, ExportaPedidos
  * Isso evita violação do LSP (não precisa lançar UnsupportedOperationException)
  */
-public class PedidoRepositoryReplica implements BuscaPedido, ListaPedidos {
+public class PedidoRepositoryReplica implements ConsultaPedidos {
     private final Map<String, Pedido> pedidos = new HashMap<>();
 
     // Método interno para popular a réplica (simula replicação)

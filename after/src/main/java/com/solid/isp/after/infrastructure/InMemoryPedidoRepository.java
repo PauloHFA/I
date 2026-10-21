@@ -5,6 +5,7 @@ import com.solid.isp.after.application.port.ExportaPedidos;
 import com.solid.isp.after.application.port.ListaPedidos;
 import com.solid.isp.after.application.port.SalvaPedido;
 import com.solid.isp.after.application.port.BuscaPedido;
+import com.solid.isp.after.application.port.ConsultaPedidos;
 import com.solid.isp.after.domain.Pedido;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Map;
  * Implementação em memória para testes - implementa todos os papéis
  * Usada como "banco de dados" fake nos testes de integração
  */
-public class InMemoryPedidoRepository implements SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos {
+public class InMemoryPedidoRepository implements SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos, ConsultaPedidos {
     private final Map<String, Pedido> pedidos = new HashMap<>();
 
     @Override
@@ -51,6 +52,11 @@ public class InMemoryPedidoRepository implements SalvaPedido, BuscaPedido, Lista
               .append(p.total()).append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public String exportarCabecalhoCsv() {
+        return "ID,Cliente,Data,Status,Total";
     }
 
     // Utilitários para testes

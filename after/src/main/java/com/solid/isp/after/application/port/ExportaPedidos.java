@@ -5,4 +5,6 @@ package com.solid.isp.after.application.port;
  */
 public interface ExportaPedidos {
     String exportarCsv();
+
+    String exportarCabecalhoCsv();
 }

@@ -18,9 +18,10 @@ import com.solid.isp.after.infrastructure.MySqlPedidoRepository;
 import com.solid.isp.after.infrastructure.PedidoRepositoryReplica;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,15 +47,6 @@ class ISPRespectedTest {
      * Fake para SalvaPedido - APENAS 1 método
      * Usado para testar FinalizarPedido
      */
-    private SalvaPedido criarFakeSalvaPedido() {
-        return new SalvaPedido() {
-            @Override
-            public void salvar(Pedido pedido) {
-                // Apenas registra - implementação mínima
-            }
-        };
-    }
-
     /**
      * Fake para BuscaPedido - APENAS 1 método
      */
@@ -75,20 +67,21 @@ class ISPRespectedTest {
     /**
      * Fake para ExcluiPedido - APENAS 1 método
      */
-    private ExcluiPedido criarFakeExcluiPedido() {
-        return new ExcluiPedido() {
-            @Override
-            public void excluir(String id) {
-                // Apenas registra - implementação mínima
-            }
-        };
-    }
-
     /**
-     * Fake para ExportaPedidos - APENAS 1 método
+     * Fake para ExportaPedidos - contém somente operações de exportação
      */
     private ExportaPedidos criarFakeExportaPedidos() {
-        return () -> "ID,Cliente,Data,Status,Total\n";
+        return new ExportaPedidos() {
+            @Override
+            public String exportarCsv() {
+                return "ID,Cliente,Data,Status,Total\n";
+            }
+
+            @Override
+            public String exportarCabecalhoCsv() {
+                return "ID,Cliente,Data,Status,Total";
+            }
+        };
     }
 
     // ============================================
@@ -99,11 +92,13 @@ class ISPRespectedTest {
     void teste1_FinalizarPedido_ComFakeMinimo() {
         System.out.println("\n=== TESTE 1: FinalizarPedido - Fake com APENAS SalvaPedido ===");
         
-        SalvaPedido fakeSalva = criarFakeSalvaPedido();
+        List<Pedido> salvos = new ArrayList<>();
+        SalvaPedido fakeSalva = salvos::add;
         FinalizarPedido finalizarPedido = new FinalizarPedido(fakeSalva);
         Pedido pedido = criarPedidoExemplo("1");
         
         assertDoesNotThrow(() -> finalizarPedido.executar(pedido));
+        assertEquals(List.of(pedido), salvos);
         System.out.println("✓ FinalizarPedido executado com fake de 1 método");
     }
 
@@ -113,10 +108,12 @@ class ISPRespectedTest {
         
         Pedido pedido = criarPedidoExemplo("2");
         BuscaPedido fakeBusca = criarFakeBuscaPedido(List.of(pedido));
-        ExcluiPedido fakeExclui = criarFakeExcluiPedido();
+        List<String> excluidos = new ArrayList<>();
+        ExcluiPedido fakeExclui = excluidos::add;
         
         CancelarPedido cancelarPedido = new CancelarPedido(fakeBusca, fakeExclui);
         assertDoesNotThrow(() -> cancelarPedido.executar("2"));
+        assertEquals(List.of("2"), excluidos);
         
         System.out.println("✓ CancelarPedido executado com 2 fakes de 1 método cada");
     }
@@ -202,15 +199,20 @@ class ISPRespectedTest {
 
     @Test
     void teste7_Evolucao_MudancaEmExportaPedidosNaoAfetaOutros() {
-        System.out.println("\n=== TESTE 7: Evolução - Mudança em ExportaPedidos não afeta outros clientes ===");
-        
-        System.out.println("✓ FinalizarPedido depende só de SalvaPedido");
-        System.out.println("✓ CancelarPedido depende só de BuscaPedido + ExcluiPedido");
-        System.out.println("✓ RelatorioFinanceiro depende só de ListaPedidos");
-        System.out.println("✓ Apenas quem usa ExportaPedidos seria afetado");
-        
-        // Este teste apenas documenta a arquitetura - a comprovação real
-        // seria tentar compilar após mudar ExportaPedidos
-        assertTrue(true);
+        ExportaPedidos exportador = new MySqlPedidoRepository();
+
+        assertEquals("ID,Cliente,Data,Status,Total", exportador.exportarCabecalhoCsv());
+        assertEquals(List.of(SalvaPedido.class), dependencyTypes(FinalizarPedido.class));
+        assertEquals(List.of(BuscaPedido.class, ExcluiPedido.class), dependencyTypes(CancelarPedido.class));
+        assertEquals(List.of(ConsultaPedidos.class), dependencyTypes(ConsultarPedido.class));
+        assertEquals(List.of(ListaPedidos.class), dependencyTypes(RelatorioFinanceiro.class));
+    }
+
+    private List<Class<?>> dependencyTypes(Class<?> useCase) {
+        List<Class<?>> types = new ArrayList<>();
+        for (Field field : useCase.getDeclaredFields()) {
+            types.add(field.getType());
+        }
+        return List.copyOf(types);
     }
 }

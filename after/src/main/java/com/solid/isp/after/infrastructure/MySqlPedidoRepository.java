@@ -5,6 +5,8 @@ import com.solid.isp.after.application.port.ExportaPedidos;
 import com.solid.isp.after.application.port.ListaPedidos;
 import com.solid.isp.after.application.port.SalvaPedido;
 import com.solid.isp.after.application.port.BuscaPedido;
+import com.solid.isp.after.application.port.ConsultaPedidos;
+import com.solid.isp.after.application.port.GerenciaPedidos;
 import com.solid.isp.after.domain.Pedido;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +17,7 @@ import java.util.Map;
  * Implementação completa (MySQL) - implementa TODOS os papéis
  * Uma única classe pode implementar múltiplas interfaces
  */
-public class MySqlPedidoRepository implements SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos {
+public class MySqlPedidoRepository implements SalvaPedido, BuscaPedido, ListaPedidos, ExcluiPedido, ExportaPedidos, ConsultaPedidos, GerenciaPedidos {
     private final Map<String, Pedido> pedidos = new HashMap<>();
 
     @Override
@@ -58,5 +60,10 @@ public class MySqlPedidoRepository implements SalvaPedido, BuscaPedido, ListaPed
         }
         System.out.println("[MySQL] Exportando " + lista.size() + " pedidos para CSV");
         return sb.toString();
+    }
+
+    @Override
+    public String exportarCabecalhoCsv() {
+        return "ID,Cliente,Data,Status,Total";
     }
 }
